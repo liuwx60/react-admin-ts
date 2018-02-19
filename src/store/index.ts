@@ -1,11 +1,14 @@
 import * as Counter from './Counter';
+import * as Login from './Login';
 
 export interface ApplicationState {
   counter: Counter.CounterState;
+  login: Login.LoginState;
 }
 
 export const reducers = {
-  counter: Counter.reducer
+  counter: Counter.reducer,
+  login: Login.reducer
 };
 
 export interface AppThunkAction<TAction> {
