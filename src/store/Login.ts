@@ -1,8 +1,8 @@
 import { Reducer } from 'redux';
+// import { WrappedFormUtils } from 'antd/lib/form/Form';
 
 export interface LoginState {
-  // tslint:disable-next-line:no-any
-  form: any;
+  // form: WrappedFormUtils;
 }
 
 interface SubmitLoginAction { type: 'SUBMIT_LOGIN_ACTION'; }

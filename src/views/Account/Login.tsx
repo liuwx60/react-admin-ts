@@ -12,12 +12,13 @@ const FormItem = Form.Item;
 type LoginProps = 
   LoginStore.LoginState
   & typeof LoginStore.actionCreators
-  & RouteComponentProps<{}>
-  & FormComponentProps;
+  & RouteComponentProps<{}>;
 
-class Login extends React.Component<LoginProps, {}> {
+class Login extends React.Component<LoginProps & FormComponentProps, {}> {
   public render() {
     const { getFieldDecorator } = this.props.form;
+    // tslint:disable-next-line:no-console
+    console.log(this.props);
     return (
       <div className="form">
         <Form className="login-form">
@@ -55,7 +56,19 @@ class Login extends React.Component<LoginProps, {}> {
   }
 }
 
-export default connect(
+// export default Form.create<LoginProps>()(Login);
+
+// tslint:disable-next-line:no-any
+let bb = connect(
   (state: ApplicationState) => state.login,
   LoginStore.actionCreators
-)(Form.create<LoginProps>()(Login) as typeof Login);
+)(Login);
+
+let aa = Form.create<LoginProps>()(bb);
+
+export default aa;
+
+// export default connect(
+//   (state: ApplicationState) => state.login,
+//   LoginStore.actionCreators
+// )(aa);
