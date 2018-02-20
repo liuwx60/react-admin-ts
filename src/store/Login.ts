@@ -20,5 +20,5 @@ export const reducer: Reducer<LoginState> = (state: LoginState, action: KnownAct
     default:
   }
 
-  return state || { form: {} };
+  return state || {};
 };

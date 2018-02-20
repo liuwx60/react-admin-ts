@@ -17,8 +17,6 @@ type LoginProps =
 class Login extends React.Component<LoginProps & FormComponentProps, {}> {
   public render() {
     const { getFieldDecorator } = this.props.form;
-    // tslint:disable-next-line:no-console
-    console.log(this.props);
     return (
       <div className="form">
         <Form className="login-form">
@@ -56,19 +54,7 @@ class Login extends React.Component<LoginProps & FormComponentProps, {}> {
   }
 }
 
-// export default Form.create<LoginProps>()(Login);
-
-// tslint:disable-next-line:no-any
-let bb = connect(
+export default connect(
   (state: ApplicationState) => state.login,
   LoginStore.actionCreators
-)(Login);
-
-let aa = Form.create<LoginProps>()(bb);
-
-export default aa;
-
-// export default connect(
-//   (state: ApplicationState) => state.login,
-//   LoginStore.actionCreators
-// )(aa);
+)(Form.create<LoginProps>()(Login));

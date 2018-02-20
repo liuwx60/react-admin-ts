@@ -11,6 +11,7 @@
     "@types/react-router-redux": "^5.0.12",
     "@types/webpack-env": "^1.13.5",
     "antd": "^3.2.1",
+    "axios": "^0.18.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-hot-loader": "^4.0.0-beta.22",
