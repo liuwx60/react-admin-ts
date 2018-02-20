@@ -10,7 +10,12 @@ interface SubmitLoginAction { type: 'SUBMIT_LOGIN_ACTION'; }
 type KnownAction = SubmitLoginAction;
 
 export const actionCreators = {
-  submit: () => <SubmitLoginAction> { type: 'SUBMIT_LOGIN_ACTION' }
+  // tslint:disable-next-line:no-any
+  submit: (values: any): SubmitLoginAction => { 
+    // tslint:disable-next-line:no-console
+    console.log(values);
+    return { type: 'SUBMIT_LOGIN_ACTION' };
+   }
 };
 
 export const reducer: Reducer<LoginState> = (state: LoginState, action: KnownAction) => {

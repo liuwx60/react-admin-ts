@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Form, Icon, Input, Button, Checkbox } from 'antd';
+import { Form, Icon, Input, Button } from 'antd';
 import './Login.css';
 import * as LoginStore from '../../store/Account/Login';
 import { RouteComponentProps } from 'react-router-dom';
@@ -20,8 +20,7 @@ class Login extends React.Component<LoginProps & FormComponentProps, {}> {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        // tslint:disable-next-line:no-console
-        console.log('Received values of form: ', values);
+        this.props.submit(values);
       }
     });
   }
@@ -29,6 +28,9 @@ class Login extends React.Component<LoginProps & FormComponentProps, {}> {
     const { getFieldDecorator } = this.props.form;
     return (
       <div className="form">
+        <div className="logo">
+          <span>React Admin</span>
+        </div>
         <Form onSubmit={this.handleSubmit} className="login-form">
           <FormItem>
             {getFieldDecorator('username', {
@@ -46,17 +48,9 @@ class Login extends React.Component<LoginProps & FormComponentProps, {}> {
             )}
           </FormItem>
           <FormItem>
-            {getFieldDecorator('remember', {
-              valuePropName: 'checked',
-              initialValue: true,
-            })(
-              <Checkbox>Remember me</Checkbox>
-            )}
-            <a className="login-form-forgot" href="#">Forgot password</a>
             <Button type="primary" htmlType="submit" className="login-form-button">
               Log in
             </Button>
-            Or <a href="#">register now!</a>
           </FormItem>
         </Form>
       </div>
