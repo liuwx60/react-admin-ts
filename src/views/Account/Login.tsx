@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
 import './Login.css';
-import * as LoginStore from '../../store/Login';
+import * as LoginStore from '../../store/Account/Login';
 import { RouteComponentProps } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { ApplicationState } from '../../store';
@@ -15,13 +15,23 @@ type LoginProps =
   & RouteComponentProps<{}>;
 
 class Login extends React.Component<LoginProps & FormComponentProps, {}> {
+  // tslint:disable-next-line:no-any
+  handleSubmit = (e: any) => {
+    e.preventDefault();
+    this.props.form.validateFields((err, values) => {
+      if (!err) {
+        // tslint:disable-next-line:no-console
+        console.log('Received values of form: ', values);
+      }
+    });
+  }
   public render() {
     const { getFieldDecorator } = this.props.form;
     return (
       <div className="form">
-        <Form className="login-form">
+        <Form onSubmit={this.handleSubmit} className="login-form">
           <FormItem>
-            {getFieldDecorator('userName', {
+            {getFieldDecorator('username', {
               rules: [{ required: true, message: 'Please input your username!' }],
             })(
               <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Username" />
