@@ -13,13 +13,12 @@ const fakeAuth: IfakeAuth = {
   isAuthenticated: false
 };
 
-interface IprivateParams {
-  // tslint:disable-next-line:no-any
+interface PrivateRouteParams {
   component: any;
   path: string;
 }
 
-const PrivateRoute = ({ component: Component, ...rest }: IprivateParams) => (
+const PrivateRoute = ({ component: Component, ...rest }: PrivateRouteParams) => (
   <Route
     {...rest}
     render={props =>

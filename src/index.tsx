@@ -16,7 +16,6 @@ const baseUrl = document.getElementsByTagName('base')[0].getAttribute('href')!;
 const history = createBrowserHistory({ basename: baseUrl });
 
 // Get the application-wide store instance, prepopulating with state from the server where available.
-// tslint:disable-next-line:no-any
 const initialState = (window as any).initialReduxState as ApplicationState;
 const store = configureStore(history, initialState);
 

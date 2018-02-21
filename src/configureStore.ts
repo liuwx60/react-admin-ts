@@ -14,7 +14,6 @@ import { ApplicationState, reducers } from './store';
 import { History } from 'history';
 
 export default function configureStore(history: History, initialState?: ApplicationState) {
-  // tslint:disable-next-line:no-any
   const windowIfDefined = typeof window === 'undefined' ? null : window as any;
 
   const devToolsExtension = 

@@ -15,7 +15,6 @@ type LoginProps =
   & RouteComponentProps<{}>;
 
 class Login extends React.Component<LoginProps & FormComponentProps, {}> {
-  // tslint:disable-next-line:no-any
   handleSubmit = (e: any) => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
@@ -37,15 +36,21 @@ class Login extends React.Component<LoginProps & FormComponentProps, {}> {
             {getFieldDecorator('username', {
               rules: [{ required: true, message: 'Please input your username!' }],
             })(
-              <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Username" />
+              <Input
+                prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                placeholder="Username"
+              />
             )}
           </FormItem>
           <FormItem>
             {getFieldDecorator('password', {
               rules: [{ required: true, message: 'Please input your Password!' }],
             })(
-              // tslint:disable-next-line:max-line-length
-              <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="Password" />
+              <Input
+                prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                type="password"
+                placeholder="Password"
+              />
             )}
           </FormItem>
           <FormItem>
