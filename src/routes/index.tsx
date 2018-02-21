@@ -9,8 +9,10 @@ interface IfakeAuth {
   isAuthenticated: boolean;
 }
 
+const accessToken: string = localStorage.access_token || '';
+
 const fakeAuth: IfakeAuth = {
-  isAuthenticated: false
+  isAuthenticated: accessToken.length > 0
 };
 
 interface PrivateRouteParams {
@@ -36,9 +38,12 @@ const PrivateRoute = ({ component: Component, ...rest }: PrivateRouteParams) => 
 );
 
 export const routes = (
-  <Layout>
-    <Route exact={true} path="/" component={Home}/>
-    <PrivateRoute path="/counter" component={Counter}/>
+  <div>
+    <Layout>
+      <Route exact={true} path="/" component={Home}/>
+      <PrivateRoute path="/counter" component={Counter}/>
+    </Layout>
     <Route path="/login" component={Login}/>
-  </Layout>
+  </div>
+  
 );

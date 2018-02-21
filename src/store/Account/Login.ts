@@ -8,7 +8,7 @@ interface SubmitLoginAction { type: 'SUBMIT_LOGIN_ACTION'; }
 type KnownAction = SubmitLoginAction;
 
 export const actionCreators = {
-  submit: (values: any): SubmitLoginAction => { 
+  submit: (values: any): SubmitLoginAction => {
     axios.post('login', values);
     return { type: 'SUBMIT_LOGIN_ACTION' };
    }
