@@ -1,9 +1,7 @@
 import { Reducer } from 'redux';
-// import { WrappedFormUtils } from 'antd/lib/form/Form';
+import axios from '../../http';
 
-export interface LoginState {
-  // form: WrappedFormUtils;
-}
+export interface LoginState {}
 
 interface SubmitLoginAction { type: 'SUBMIT_LOGIN_ACTION'; }
 
@@ -12,8 +10,7 @@ type KnownAction = SubmitLoginAction;
 export const actionCreators = {
   // tslint:disable-next-line:no-any
   submit: (values: any): SubmitLoginAction => { 
-    // tslint:disable-next-line:no-console
-    console.log(values);
+    axios.post('login', values);
     return { type: 'SUBMIT_LOGIN_ACTION' };
    }
 };

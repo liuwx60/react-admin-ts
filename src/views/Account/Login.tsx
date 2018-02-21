@@ -24,6 +24,7 @@ class Login extends React.Component<LoginProps & FormComponentProps, {}> {
       }
     });
   }
+
   public render() {
     const { getFieldDecorator } = this.props.form;
     return (

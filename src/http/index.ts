@@ -33,7 +33,9 @@ axios.interceptors.response.use(
         break;
       default:
     }
-    
+
     return;
   }
 );
+
+export default axios;
