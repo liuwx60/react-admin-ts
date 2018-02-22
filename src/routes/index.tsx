@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Route, Redirect, Switch } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 import Layout from '../components/Layout/Layout';
 import Home from '../components/Home';
 import Counter from '../components/Counter';
@@ -39,14 +39,10 @@ const PrivateRoute = ({ component: Component, ...rest }: PrivateRouteParams) => 
 
 export const routes = (
   <div style={{ height: '100%' }}>
-    <Switch>
-      <Route exact={true} path="/">
-        <Layout>
-          <Route path="/home" component={Home}/>
-          <PrivateRoute path="/counter" component={Counter}/>
-        </Layout>
-      </Route>
+    <Layout>
+      <Route exact={true} path="/" component={Home}/>
+      <PrivateRoute path="/counter" component={Counter}/>
       <Route path="/login" component={Login}/>
-    </Switch>
+    </Layout>
   </div>
 );

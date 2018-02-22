@@ -1,8 +1,12 @@
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 import { Layout as AntdLayout, Menu, Breadcrumb, Icon } from 'antd';
+// import { createBrowserHistory } from 'history';
 import './Layout.css';
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = AntdLayout;
+// const baseUrl = document.getElementsByTagName('base')[0].getAttribute('href')!;
+// const history = createBrowserHistory({ basename: baseUrl });
 
 export default class Layout extends React.Component<{}, {}> {
   public render() {
@@ -30,8 +34,12 @@ export default class Layout extends React.Component<{}, {}> {
               style={{ height: '100%', borderRight: 0 }}
             >
               <SubMenu key="sub1" title={<span><Icon type="user" />subnav 1</span>}>
-                <Menu.Item key="1">option1</Menu.Item>
-                <Menu.Item key="2">option2</Menu.Item>
+                <Menu.Item key="1">
+                  <Link to="/">Home</Link>
+                </Menu.Item>
+                <Menu.Item key="2">
+                  <Link to="/counter">Counter</Link>
+                </Menu.Item>
                 <Menu.Item key="3">option3</Menu.Item>
                 <Menu.Item key="4">option4</Menu.Item>
               </SubMenu>

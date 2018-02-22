@@ -1,9 +1,10 @@
 import * as React from 'react';
-import { RouteComponentProps } from 'react-router-dom';
+import { RouteComponentProps, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { ApplicationState } from '../store';
 import * as CounterStore from '../store/Counter';
 import { Button } from 'antd';
+// import Layout from './Layout/Layout';
 
 interface CounterState {
   currentCount: number;
@@ -36,6 +37,8 @@ class Counter extends React.Component<CounterProps, CounterState> {
         <button onClick={() => { this.incrementCounter(); }}>Increment</button>
 
         <Button type="primary">Primary</Button>
+
+        <Link to="/">Home</Link>
       </div>
     );
   }
