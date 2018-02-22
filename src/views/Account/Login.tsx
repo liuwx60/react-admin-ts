@@ -19,7 +19,8 @@ class Login extends React.Component<LoginProps & FormComponentProps, {}> {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        this.props.submit(values);
+        // this.props.submit(values);
+        this.props.history.push('/counter');
       }
     });
   }
