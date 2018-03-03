@@ -20,6 +20,7 @@ class Login extends React.Component<LoginProps & FormComponentProps, {}> {
     this.props.form.validateFields((err, values) => {
       if (!err) {
         // this.props.submit(values);
+        localStorage.access_token = '123';
         this.props.history.push('/counter');
       }
     });
