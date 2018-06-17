@@ -1,24 +1,19 @@
 import * as React from 'react';
 import { Route, Redirect } from 'react-router-dom';
+import * as Loadable from 'react-loadable';
 import Layout from '../components/Layout/Layout';
-import Home from '../components/Home';
 import Counter from '../components/Counter';
 import Login from '../views/Account/Login';
-
-// interface IfakeAuth {
-//   isAuthenticated: boolean;
-// }
-
-// const accessToken: string = localStorage.access_token || '';
-
-// const fakeAuth: IfakeAuth = {
-//   isAuthenticated: accessToken.length > 0
-// };
 
 interface PrivateRouteParams {
   component: any;
   path: string;
 }
+
+const home = Loadable({
+  loader: () => import('../components/Home'),
+  loading: (() => null)
+});
 
 const PrivateRoute = ({ component: Component, ...rest }: PrivateRouteParams) => (
   <Route
@@ -40,7 +35,7 @@ const PrivateRoute = ({ component: Component, ...rest }: PrivateRouteParams) => 
 export const routes = (
   <div style={{ height: '100%' }}>
     <Layout>
-      <Route exact={true} path="/" component={Home}/>
+      <Route exact={true} path="/" component={home}/>
       <PrivateRoute path="/counter" component={Counter}/>
       <Route path="/login" component={Login}/>
     </Layout>
