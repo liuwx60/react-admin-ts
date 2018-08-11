@@ -1,6 +1,8 @@
 import { Icon, Layout, Menu } from 'antd';
 import * as React from 'react';
+import * as Loadable from 'react-loadable';
 import { Redirect, Route, Switch } from 'react-router-dom';
+import routerData from '../Routes/Router';
 import Login from '../Views/Account/Login';
 import './BaseLayout.css';
 
@@ -31,6 +33,13 @@ const PrivateRoute = ({ component: Component, ...rest }: IPrivateRouteParams) =>
       )}
   />
 );
+
+const getComponent = (component: Promise<any>) => {
+  return Loadable({
+    loader: () => component,
+    loading: () => null
+  });
+}
 
 export default class BaseLayout extends React.Component<{}, IBaseLayoutState> {
 
@@ -78,6 +87,9 @@ export default class BaseLayout extends React.Component<{}, IBaseLayoutState> {
           </Header>
           <Content style={{ margin: '24px 16px', padding: 24, background: '#fff', minHeight: 280 }}>
             <Switch>
+              {routerData.map(item => (
+                <Route path={item.path} component={getComponent(item.component)}/>
+              ))}
               <PrivateRoute path="/home" component={Login}/>
             </Switch>
           </Content>
