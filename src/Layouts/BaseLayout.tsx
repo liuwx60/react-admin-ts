@@ -1,10 +1,11 @@
-import { Icon, Layout, Menu } from 'antd';
+import { Icon, Layout, Menu, Badge, Avatar, Dropdown } from 'antd';
 import * as React from 'react';
 import * as Loadable from 'react-loadable';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import routerData from '../Routes/Router';
 import Login from '../Views/Account/Login';
 import './BaseLayout.css';
+import logo from '../logo.svg';
 
 const { Header, Sider, Content } = Layout;
 
@@ -53,6 +54,20 @@ export default class BaseLayout extends React.Component<{}, IBaseLayoutState> {
   }
 
   public render() {
+    const menu = (
+      <Menu>
+        <Menu.Item>
+          <Icon type="user"/> 个人中心
+        </Menu.Item>
+        <Menu.Item>
+          <Icon type="setting" />设置
+        </Menu.Item>
+        <Menu.Divider />
+        <Menu.Item key="logout">
+          <Icon type="logout" />退出登录
+        </Menu.Item>
+      </Menu>
+    )
     return (
       <Layout>
         <Sider
@@ -77,20 +92,40 @@ export default class BaseLayout extends React.Component<{}, IBaseLayoutState> {
             </Menu.Item>
           </Menu>
         </Sider>
-        <Layout>
+        <Layout style={{ height: '100vh' }}>
           <Header style={{ background: '#fff', padding: 0 }}>
-            <Icon
-              className="trigger"
-              type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
-              onClick={this.toggle}
-            />
+            <div className="header-container">
+              <div>
+                <Icon
+                  className="trigger"
+                  type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
+                  onClick={this.toggle}
+                />
+              </div>
+              <div className="header-action">
+                <div>
+                  <Badge count={5}>
+                    <Icon type="bell" style={{ fontSize: '16px', padding: '4px' }}/>
+                  </Badge>
+                </div>
+                <div>
+                  <Dropdown overlay={menu}>
+                    <div className="user">
+                      <Avatar src={logo} style={{ width: '24px', height: '24px' }}/>
+                      <span className="username">Guest</span>
+                    </div>
+                  </Dropdown>
+                </div>
+              </div>
+            </div>
           </Header>
-          <Content style={{ margin: '24px 16px', padding: 24, background: '#fff', minHeight: 280 }}>
+          <Content style={{ padding: '24px 16px', overflow: 'hidden', overflowY: 'auto' }}>
             <Switch>
               {routerData.map(item => (
-                <Route path={item.path} component={getComponent(item.component)}/>
+                <Route path={item.path} key={item.key} component={getComponent(item.component)}/>
               ))}
               <PrivateRoute path="/home" component={Login}/>
+              <Redirect path="*" to="/dashboard/analysis"/>
             </Switch>
           </Content>
         </Layout>
