@@ -1,41 +1,48 @@
 import * as React from 'react';
-import { Menu } from 'antd';
-import routerData from '../../Routes/Router';
+import { Menu, Icon } from 'antd';
+import { Link } from 'react-router-dom';
+import routerData, { IRouterData } from '../../Routes/Router';
 const SubMenu = Menu.SubMenu;
 
 export default class SiderMenu extends React.Component {
+  public getSubMenu = (router: IRouterData): JSX.Element => {
+    return (
+      <SubMenu title={
+        <span>
+          {router.icon ? (<Icon type={router.icon} />) : null}
+          <span>{router.name}</span>
+        </span>
+      }>
+        {
+          router.children.map(item => {
+            if (item.children.length === 0) {
+              return (
+                <Menu.Item>
+                  {item.icon ? <Icon type={item.icon} /> : null}
+                  <Link to={item.path}>{item.name}</Link>
+                </Menu.Item>
+              );
+            } else {
+              return (this.getSubMenu(item));
+            }
+          })
+        }
+      </SubMenu>
+    )
+  }
+
   public getMenu = () => {
     let menus: JSX.Element[] = [];
     routerData.map(item => {
       if (item.children.length === 0) {
         menus.push((
           <Menu.Item>
-            {item.name}
+            {item.icon ? <Icon type={item.icon} /> : null}
+            <Link to={item.path}>{item.name}</Link>
           </Menu.Item>
         ));
       } else {
-        let router = item;
-        while (router.children.length > 0) {
-          let subMenu: JSX.Element[] = [];
-  
-          router.children.map(x => {
-            if (x.children.length === 0) {
-              subMenu.push((
-                <Menu.Item>
-                  {x.name}
-                </Menu.Item>
-              ));
-            }
-  
-            router = x;
-          });
-  
-          menus.push((
-            <SubMenu title={router.name}>
-              {subMenu.map(x => (x))}
-            </SubMenu>
-          ));
-        }
+        menus.push(this.getSubMenu(item));
       }
     });
 
