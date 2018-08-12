@@ -2,10 +2,11 @@ import { Icon, Layout, Menu, Badge, Avatar, Dropdown } from 'antd';
 import * as React from 'react';
 import * as Loadable from 'react-loadable';
 import { Redirect, Route, Switch } from 'react-router-dom';
-import routerData from '../Routes/Router';
+import routerData, { IRouterData } from '../Routes/Router';
 import Login from '../Views/Account/Login';
 import './BaseLayout.css';
 import logo from '../logo.svg';
+import SiderMenu from '../Components/Menus/SiderMenu';
 
 const { Header, Sider, Content } = Layout;
 
@@ -42,6 +43,27 @@ const getComponent = (component: Promise<any>) => {
   });
 }
 
+const getRouterData = () => {
+  let routers: IRouterData[] = [];
+  routerData.map(item => {
+    if (item.children.length === 0) {
+      routers.push(item);
+      return;
+    }
+    let router = item;
+    while (router.children.length > 0) {
+      router.children.map(x => {
+        if (x.children.length === 0) {
+          routers.push(x);
+        }
+        router = x;
+      });
+    }
+  });
+
+  return routers;
+}
+
 export default class BaseLayout extends React.Component<{}, IBaseLayoutState> {
 
   public state = {
@@ -76,21 +98,8 @@ export default class BaseLayout extends React.Component<{}, IBaseLayoutState> {
           collapsed={this.state.collapsed}
           style={{ height: '100vh' }}
         >
-          <div className="logo" />
-          <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
-            <Menu.Item key="1">
-              <Icon type="user" />
-              <span>nav 1</span>
-            </Menu.Item>
-            <Menu.Item key="2">
-              <Icon type="video-camera" />
-              <span>nav 2</span>
-            </Menu.Item>
-            <Menu.Item key="3">
-              <Icon type="upload" />
-              <span>nav 3</span>
-            </Menu.Item>
-          </Menu>
+          <div className="logo">ADMIN</div>
+          <SiderMenu />
         </Sider>
         <Layout style={{ height: '100vh' }}>
           <Header style={{ background: '#fff', padding: 0 }}>
@@ -121,11 +130,11 @@ export default class BaseLayout extends React.Component<{}, IBaseLayoutState> {
           </Header>
           <Content style={{ padding: '24px 16px', overflow: 'hidden', overflowY: 'auto' }}>
             <Switch>
-              {routerData.map(item => (
+              {getRouterData().map(item => (
                 <Route path={item.path} key={item.key} component={getComponent(item.component)}/>
               ))}
-              <PrivateRoute path="/home" component={Login}/>
-              <Redirect path="*" to="/dashboard/analysis"/>
+              <PrivateRoute path="/home" component={Login} />
+              <Redirect path="*" to="/dashboard/analysis" />
             </Switch>
           </Content>
         </Layout>
