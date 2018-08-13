@@ -1,11 +1,14 @@
 import * as Counter from './Counter';
+import * as Login from './Account/Login';
 
 export interface IApplicationState {
   counter: Counter.ICounterState;
+  login: Login.ILoginState
 }
 
 export const reducers = {
-  counter: Counter.reducer
+  counter: Counter.reducer,
+  login: Login.reducer
 };
 
 // tslint:disable-next-line:interface-name

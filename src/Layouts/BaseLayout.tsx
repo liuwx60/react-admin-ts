@@ -3,7 +3,6 @@ import * as React from 'react';
 import * as Loadable from 'react-loadable';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import routerData, { IRouterData } from '../Routes/Router';
-import Login from '../Views/Account/Login';
 import './BaseLayout.css';
 import logo from '../logo.svg';
 import SiderMenu from '../Components/Menus/SiderMenu';
@@ -131,9 +130,8 @@ export default class BaseLayout extends React.Component<{}, IBaseLayoutState> {
           <Content style={{ padding: '24px 16px', overflow: 'hidden', overflowY: 'auto' }}>
             <Switch>
               {getRouterData().map(item => (
-                <Route path={item.path} key={item.key} component={getComponent(item.component)}/>
+                <PrivateRoute path={item.path} key={item.key} component={getComponent(item.component)}/>
               ))}
-              <PrivateRoute path="/home" component={Login} />
               <Redirect path="*" to="/dashboard/analysis" />
             </Switch>
           </Content>

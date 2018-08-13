@@ -7,7 +7,7 @@ const SubMenu = Menu.SubMenu;
 export default class SiderMenu extends React.Component {
   public getSubMenu = (router: IRouterData): JSX.Element => {
     return (
-      <SubMenu title={
+      <SubMenu key={router.key} title={
         <span>
           {router.icon ? (<Icon type={router.icon} />) : null}
           <span>{router.name}</span>
@@ -17,7 +17,7 @@ export default class SiderMenu extends React.Component {
           router.children.map(item => {
             if (item.children.length === 0) {
               return (
-                <Menu.Item>
+                <Menu.Item key={item.key}>
                   {item.icon ? <Icon type={item.icon} /> : null}
                   <Link to={item.path}>{item.name}</Link>
                 </Menu.Item>
@@ -36,7 +36,7 @@ export default class SiderMenu extends React.Component {
     routerData.map(item => {
       if (item.children.length === 0) {
         menus.push((
-          <Menu.Item>
+          <Menu.Item key={item.key}>
             {item.icon ? <Icon type={item.icon} /> : null}
             <Link to={item.path}>{item.name}</Link>
           </Menu.Item>
