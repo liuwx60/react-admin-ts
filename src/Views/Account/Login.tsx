@@ -2,6 +2,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { RouteComponentProps } from 'react-router-dom';
 import { IApplicationState } from '../../Store';
+import { Button } from 'antd';
 import * as CounterStore from '../../Store/Counter';
 
 type CounterProps = 
@@ -14,13 +15,7 @@ class Login extends React.Component<CounterProps, {}> {
     return (
       <div>
         <p>{this.props.count}</p>
-
-        <button onClick={
-          // tslint:disable-next-line:jsx-no-lambda
-          () => {
-            this.props.increment();
-          }
-        }>Click</button>
+        <Button type="primary" onClick={() => { this.props.increment() }}>Click</Button>
       </div>
     )
   }

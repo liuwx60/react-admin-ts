@@ -344,9 +344,9 @@ ansi-styles@^3.2.0, ansi-styles@^3.2.1:
   dependencies:
     color-convert "^1.9.0"
 
-antd@^3.8.0:
-  version "3.8.0"
-  resolved "https://registry.yarnpkg.com/antd/-/antd-3.8.0.tgz#a4226a373fc301b9475b7d23e85433d203481858"
+antd@^3.8.1:
+  version "3.8.1"
+  resolved "https://registry.yarnpkg.com/antd/-/antd-3.8.1.tgz#1780acd5e9bc6c80dc23b042161418eb88f4d80e"
   dependencies:
     array-tree-filter "^2.0.0"
     babel-runtime "6.x"
@@ -5047,8 +5047,8 @@ mimic-fn@^1.0.0:
   resolved "https://registry.yarnpkg.com/mimic-fn/-/mimic-fn-1.2.0.tgz#820c86a39334640e99516928bd03fca88057d022"
 
 mini-store@^1.0.2, mini-store@^1.1.0:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/mini-store/-/mini-store-1.1.1.tgz#a6a7c27b59aa759ef2d7f61ebef474f7ca241523"
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/mini-store/-/mini-store-1.1.2.tgz#cc150e0878e080ca58219d47fccefefe2c9aea3e"
   dependencies:
     hoist-non-react-statics "^2.3.1"
     prop-types "^15.6.0"
@@ -6416,8 +6416,8 @@ rc-progress@~2.2.2:
     prop-types "^15.5.8"
 
 rc-rate@~2.4.0:
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/rc-rate/-/rc-rate-2.4.0.tgz#97ebcc5876e2e498b9f5f65ced256d8ab54e5f06"
+  version "2.4.2"
+  resolved "https://registry.yarnpkg.com/rc-rate/-/rc-rate-2.4.2.tgz#c097bfdba7a5783cec287c928b1461cc1621f836"
   dependencies:
     babel-runtime "^6.26.0"
     classnames "^2.2.5"
