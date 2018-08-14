@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { Menu, Icon } from 'antd';
 import { Link } from 'react-router-dom';
-import routerData, { IRouterData } from '../../Routes/Router';
+import routerData from '../../Routes/Router';
+import IRouterData from '../../Routes/IRouterData';
 const SubMenu = Menu.SubMenu;
 
 export default class SiderMenu extends React.Component {
@@ -18,8 +19,7 @@ export default class SiderMenu extends React.Component {
             if (item.children.length === 0) {
               return (
                 <Menu.Item key={item.key}>
-                  {item.icon ? <Icon type={item.icon} /> : null}
-                  <Link to={item.path}>{item.name}</Link>
+                  <Link to={item.path}>{item.icon ? <Icon type={item.icon} /> : null}{item.name}</Link>
                 </Menu.Item>
               );
             } else {
@@ -37,8 +37,7 @@ export default class SiderMenu extends React.Component {
       if (item.children.length === 0) {
         menus.push((
           <Menu.Item key={item.key}>
-            {item.icon ? <Icon type={item.icon} /> : null}
-            <Link to={item.path}>{item.name}</Link>
+            <Link to={item.path}>{item.icon ? <Icon type={item.icon} /> : null}{item.name}</Link>
           </Menu.Item>
         ));
       } else {
@@ -47,6 +46,10 @@ export default class SiderMenu extends React.Component {
     });
 
     return menus;
+  }
+
+  public componentDidMount() {
+    console.log('SiderMenu', 'componentDidMount');
   }
   
   public render() {

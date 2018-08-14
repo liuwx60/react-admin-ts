@@ -2,7 +2,8 @@ import { Icon, Layout, Menu, Badge, Avatar, Dropdown } from 'antd';
 import * as React from 'react';
 import * as Loadable from 'react-loadable';
 import { Redirect, Route, Switch } from 'react-router-dom';
-import routerData, { IRouterData } from '../Routes/Router';
+import routerData from '../Routes/Router';
+import IRouterData from '../Routes/IRouterData';
 import './BaseLayout.css';
 import logo from '../logo.svg';
 import SiderMenu from '../Components/Menus/SiderMenu';
@@ -132,7 +133,7 @@ export default class BaseLayout extends React.Component<{}, IBaseLayoutState> {
               {getRouterData().map(item => (
                 <PrivateRoute path={item.path} key={item.key} component={getComponent(item.component)}/>
               ))}
-              <Redirect path="*" to="/dashboard/analysis" />
+              <Redirect path="*" to="/dashboard/analysis2" />
             </Switch>
           </Content>
         </Layout>
