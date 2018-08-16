@@ -19,7 +19,7 @@ export default class SiderMenu extends React.Component {
             if (item.children.length === 0) {
               return (
                 <Menu.Item key={item.key}>
-                  <Link to={item.path}>{item.icon ? <Icon type={item.icon} /> : null}{item.name}</Link>
+                  <Link to={item.path} style={{ whiteSpace: 'normal' }}>{item.icon ? <Icon type={item.icon} /> : null}{item.name}</Link>
                 </Menu.Item>
               );
             } else {
@@ -37,7 +37,7 @@ export default class SiderMenu extends React.Component {
       if (item.children.length === 0) {
         menus.push((
           <Menu.Item key={item.key}>
-            <Link to={item.path}>{item.icon ? <Icon type={item.icon} /> : null}{item.name}</Link>
+            <Link to={item.path} style={{ whiteSpace: 'normal' }}>{item.icon ? <Icon type={item.icon} /> : null}{item.name}</Link>
           </Menu.Item>
         ));
       } else {
