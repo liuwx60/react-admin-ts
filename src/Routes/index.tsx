@@ -10,7 +10,7 @@ export class Layout extends React.Component {
         <Route path="/account/login" component={Login}/>
         <Route path="/" component={BaseLayout}/>
       </Switch>
-    )
+    );
   }
 }
 
@@ -20,4 +20,4 @@ export const routes = (
       <Route path="/" component={Layout} />
     </Switch>
   </div>
-)
+);

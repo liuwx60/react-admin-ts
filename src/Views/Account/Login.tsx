@@ -6,7 +6,7 @@ import { FormComponentProps } from 'antd/lib/form/Form';
 
 const FormItem = Form.Item;
 
-type LoginProps = 
+type LoginProps =
 FormComponentProps
   & RouteComponentProps<{}>;
 

@@ -28,7 +28,7 @@ export default class SiderMenu extends React.Component {
           })
         }
       </SubMenu>
-    )
+    );
   }
 
   public getMenu = () => {
@@ -51,12 +51,12 @@ export default class SiderMenu extends React.Component {
   public componentDidMount() {
     console.log('SiderMenu', 'componentDidMount');
   }
-  
+
   public render() {
     return (
-      <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
+      <Menu mode="inline" defaultSelectedKeys={['1']}>
         {this.getMenu().map(item => item)}
       </Menu>
-    )
+    );
   }
 }

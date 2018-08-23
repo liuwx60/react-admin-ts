@@ -15,7 +15,7 @@ export default function configureStore(history: History, initialState: IApplicat
   const store = createStoreWithMiddleware(allReducers, initialState) as Store<IApplicationState>;
 
   return store;
-};
+}
 
 function buildRootReducer(allReducers: ReducersMapObject<IApplicationState>) {
   return combineReducers<IApplicationState>(Object.assign({}, allReducers, { routing: routerReducer }));

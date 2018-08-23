@@ -28,7 +28,7 @@ export default class Analysis extends React.Component {
       { month: '11 月', sales: 65 },
       { month: '12 月', sales: 77 },
     ];
-    
+
     const scale = [{
       dataKey: 'sales',
       tickInterval: 20,

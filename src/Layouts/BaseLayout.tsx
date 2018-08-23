@@ -6,6 +6,7 @@ import routerData from '../Routes/Router';
 import IRouterData from '../Routes/IRouterData';
 import './BaseLayout.css';
 import logo from '../logo.svg';
+import antdlogo from '../Assets/svg/logo.svg';
 import SiderMenu from '../Components/Menus/SiderMenu';
 
 const { Header, Sider, Content } = Layout;
@@ -41,7 +42,7 @@ const getComponent = (component: Promise<any>) => {
     loader: () => component,
     loading: () => null
   });
-}
+};
 
 const getRouterData = () => {
   let routers: IRouterData[] = [];
@@ -62,7 +63,7 @@ const getRouterData = () => {
   });
 
   return routers;
-}
+};
 
 export default class BaseLayout extends React.Component<{}, IBaseLayoutState> {
 
@@ -89,16 +90,21 @@ export default class BaseLayout extends React.Component<{}, IBaseLayoutState> {
           <Icon type="logout" />退出登录
         </Menu.Item>
       </Menu>
-    )
+    );
+
     return (
       <Layout>
         <Sider
+          theme="light"
           trigger={null}
           collapsible={true}
           collapsed={this.state.collapsed}
           style={{ height: '100vh' }}
         >
-          <div className="logo">ADMIN</div>
+          <div className="logo">
+            <img src={antdlogo} />
+            {this.state.collapsed ? null : (<span>REACT ADMIN</span>)}
+          </div>
           <SiderMenu />
         </Sider>
         <Layout style={{ height: '100vh' }}>

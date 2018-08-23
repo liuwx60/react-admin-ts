@@ -6,6 +6,6 @@ export default class List extends React.Component {
       <React.Fragment>
         ROLE LIST
       </React.Fragment>
-    )
+    );
   }
 }

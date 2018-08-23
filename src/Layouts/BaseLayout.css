@@ -44,11 +44,19 @@
 
 .logo {
   height: 32px;
-  background: rgba(255,255,255,.2);
   margin: 16px;
   line-height: 32px;
   text-align: center;
   color: #ffffff;
+}
+
+.logo > img {
+  width: 32px;
+  height: 32px;
+}
+
+.logo > span {
+  margin-left: 12px;
 }
 
 .card-container {
