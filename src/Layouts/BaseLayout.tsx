@@ -8,6 +8,8 @@ import './BaseLayout.css';
 import logo from '../logo.svg';
 import antdlogo from '../Assets/svg/logo.svg';
 import SiderMenu from '../Components/Menus/SiderMenu';
+import Breadcrumb from '../Components/Breadcrumbs/Breadcrumb';
+import { RouteComponentProps } from 'react-router-dom';
 
 const { Header, Sider, Content } = Layout;
 
@@ -65,7 +67,7 @@ const getRouterData = () => {
   return routers;
 };
 
-export default class BaseLayout extends React.Component<{}, IBaseLayoutState> {
+export default class BaseLayout extends React.Component<RouteComponentProps<{}>, IBaseLayoutState> {
 
   public state = {
     collapsed: false
@@ -101,7 +103,7 @@ export default class BaseLayout extends React.Component<{}, IBaseLayoutState> {
           collapsed={this.state.collapsed}
           style={{ height: '100vh' }}
         >
-          <div className="logo">
+          <div className="sider-logo">
             <img src={antdlogo} />
             {this.state.collapsed ? null : (<span>REACT ADMIN</span>)}
           </div>
@@ -134,13 +136,18 @@ export default class BaseLayout extends React.Component<{}, IBaseLayoutState> {
               </div>
             </div>
           </Header>
-          <Content style={{ padding: '24px 16px', overflow: 'hidden', overflowY: 'auto' }}>
-            <Switch>
-              {getRouterData().map(item => (
-                <PrivateRoute path={item.path} key={item.key} component={getComponent(item.component)}/>
-              ))}
-              <Redirect path="*" to="/dashboard/analysis2" />
-            </Switch>
+
+          <Content style={{ padding: '16px', overflow: 'hidden', overflowY: 'auto', display: 'flex', flexDirection: 'column' }}>
+            <Breadcrumb {...this.props}/>
+
+            <div style={{ backgroundColor: '#fff', flex: 1, marginTop: '12px' }}>
+              <Switch>
+                {getRouterData().map(item => (
+                  <PrivateRoute path={item.path} key={item.key} component={getComponent(item.component)}/>
+                ))}
+                <Redirect path="*" to="/dashboard/analysis2" />
+              </Switch>
+            </div>
           </Content>
         </Layout>
       </Layout>

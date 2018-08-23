@@ -1,4 +1,4 @@
-import { Card, Col, Icon, Row } from 'antd';
+import { Card, Col, Icon, Row, Layout } from 'antd';
 import { Chart, Tooltip, Axis, Bar } from 'viser-react';
 import * as React from 'react';
 import BasicDonut from '../../Components/Viser/BasicDonut';
@@ -35,7 +35,7 @@ export default class Analysis extends React.Component {
     }];
 
     return (
-      <React.Fragment>
+      <Layout>
         <Row gutter={24}>
           <Col {...topColResponsiveProps}>
             <Card bordered={false}>
@@ -118,7 +118,7 @@ export default class Analysis extends React.Component {
             </Card>
           </Col>
         </Row>
-      </React.Fragment>
+      </Layout>
     );
   }
 }

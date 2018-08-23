@@ -4,7 +4,7 @@ import roleRouter from './Role';
 
 const systemRouter: IRouterData[] = [
   {
-    path: '',
+    path: '/system',
     key: 'System',
     name: '系统管理',
     icon: 'setting',
