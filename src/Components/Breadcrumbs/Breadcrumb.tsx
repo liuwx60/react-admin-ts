@@ -12,18 +12,18 @@ export default class Breadcrumb extends React.Component<RouteComponentProps<{}>,
     let router = routerData;
 
     while (router.length > 0) {
-      for (let item of router) {
-        if (this.props.location.pathname.indexOf(item.path) === 0) {
-          breadcrumbs.push(
-            <AntdBreadcrumb.Item key={item.key}>
-              {item.icon ? <Icon type={item.icon} /> : null}
-              <span>{item.name}</span>
-            </AntdBreadcrumb.Item>
-          );
-          router = item.children;
-          break;
-        }
+      let current = router.find(x => this.props.location.pathname.indexOf(x.path) === 0);
+      if (!current) {
+        break;
       }
+      breadcrumbs.push(
+        <AntdBreadcrumb.Item key={current.key}>
+          {current.icon ? <Icon type={current.icon} /> : null}
+          <span>{current.name}</span>
+        </AntdBreadcrumb.Item>
+      );
+
+      router = current.children;
     }
 
     return breadcrumbs;

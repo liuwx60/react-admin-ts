@@ -48,10 +48,6 @@ export default class SiderMenu extends React.Component {
     return menus;
   }
 
-  public componentDidMount() {
-    console.log('SiderMenu', 'componentDidMount');
-  }
-
   public render() {
     return (
       <Menu mode="inline" defaultSelectedKeys={['1']}>

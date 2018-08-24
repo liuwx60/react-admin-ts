@@ -1,5 +1,6 @@
 import IRouterData from './IRouterData';
 import systemRouter from './System';
+import settingRouter from './Setting';
 
 const routerData: IRouterData[] = [
   {
@@ -12,7 +13,8 @@ const routerData: IRouterData[] = [
     exact: false,
     children: []
   },
-  ...systemRouter
+  ...systemRouter,
+  ...settingRouter
 ];
 
 export default routerData;

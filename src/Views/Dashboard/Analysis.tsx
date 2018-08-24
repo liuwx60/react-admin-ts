@@ -33,7 +33,6 @@ export default class Analysis extends React.Component {
       dataKey: 'sales',
       tickInterval: 20,
     }];
-
     return (
       <Layout>
         <Row gutter={24}>

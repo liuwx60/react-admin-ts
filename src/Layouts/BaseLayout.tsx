@@ -145,7 +145,7 @@ export default class BaseLayout extends React.Component<RouteComponentProps<{}>,
                 {getRouterData().map(item => (
                   <PrivateRoute path={item.path} key={item.key} component={getComponent(item.component)}/>
                 ))}
-                <Redirect path="*" to="/dashboard/analysis2" />
+                <Redirect path="*" to="/dashboard" />
               </Switch>
             </div>
           </Content>
