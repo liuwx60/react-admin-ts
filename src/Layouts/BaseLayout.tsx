@@ -63,9 +63,10 @@ const getRouterData = () => {
       });
     }
   });
-
   return routers;
 };
+
+const aa = getRouterData();
 
 export default class BaseLayout extends React.Component<RouteComponentProps<{}>, IBaseLayoutState> {
 
@@ -142,7 +143,7 @@ export default class BaseLayout extends React.Component<RouteComponentProps<{}>,
 
             <div style={{ backgroundColor: '#fff', flex: 1, marginTop: '12px' }}>
               <Switch>
-                {getRouterData().map(item => (
+                {aa.map(item => (
                   <PrivateRoute path={item.path} key={item.key} component={getComponent(item.component)}/>
                 ))}
                 <Redirect path="*" to="/dashboard" />

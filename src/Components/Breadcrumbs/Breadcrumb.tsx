@@ -4,6 +4,9 @@ import { RouteComponentProps } from 'react-router-dom';
 import routerData from '../../Routes/Router';
 
 export default class Breadcrumb extends React.Component<RouteComponentProps<{}>, {}> {
+  public shouldComponentUpdate(nextProps: any) {
+    return nextProps.location !== this.props.location;
+  }
   public render() {
     return <AntdBreadcrumb>{this.getBreadecrumb()}</AntdBreadcrumb>;
   }

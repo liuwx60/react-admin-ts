@@ -6,6 +6,9 @@ import IRouterData from '../../Routes/IRouterData';
 const SubMenu = Menu.SubMenu;
 
 export default class SiderMenu extends React.Component {
+  public componentDidMount() {
+    console.log('componentDidMount');
+  }
   public getSubMenu = (router: IRouterData): JSX.Element => {
     return (
       <SubMenu key={router.key} title={
