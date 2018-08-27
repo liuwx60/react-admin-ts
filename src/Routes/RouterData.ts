@@ -1,4 +1,4 @@
-export default interface IRouterData {
+export default interface RouterData {
   path: string,
   key: string,
   name: string,
@@ -6,5 +6,5 @@ export default interface IRouterData {
   isMenu: boolean,
   component: any,
   exact: boolean,
-  children: IRouterData[]
+  children: RouterData[]
 }

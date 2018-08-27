@@ -1,19 +1,19 @@
 import { Reducer } from 'redux';
 
 // tslint:disable-next-line:no-empty-interface
-export interface ILoginState {}
+export interface LoginState {}
 
-interface ISubmitLoginAction { type: 'SUBMIT_LOGIN_ACTION'; }
+interface SubmitLoginAction { type: 'SUBMIT_LOGIN_ACTION'; }
 
-type KnownAction = ISubmitLoginAction;
+type KnownAction = SubmitLoginAction;
 
 export const actionCreators = {
-  submit: (values: any): ISubmitLoginAction => {
+  submit: (values: any): SubmitLoginAction => {
     return { type: 'SUBMIT_LOGIN_ACTION' };
    }
 };
 
-export const reducer: Reducer<ILoginState> = (state: ILoginState, action: KnownAction) => {
+export const reducer: Reducer<LoginState> = (state: LoginState, action: KnownAction) => {
   switch (action.type) {
     case 'SUBMIT_LOGIN_ACTION':
       return state;

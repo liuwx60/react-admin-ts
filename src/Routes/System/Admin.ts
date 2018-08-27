@@ -1,6 +1,6 @@
-import IRouterData from '../IRouterData';
+import RouterData from '../RouterData';
 
-const adminRouter: IRouterData[] = [
+const adminRouter: RouterData[] = [
   {
     path: '/system/admin/list',
     key: 'System.Admin.List',

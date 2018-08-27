@@ -1,6 +1,6 @@
-import IRouterData from '../IRouterData';
+import RouterData from '../RouterData';
 
-const settingRouter: IRouterData[] = [
+const settingRouter: RouterData[] = [
   {
     path: '/setting',
     key: 'Setting',

@@ -1,8 +1,8 @@
-import IRouterData from '../IRouterData';
+import RouterData from '../RouterData';
 import adminRouter from './Admin';
 import roleRouter from './Role';
 
-const systemRouter: IRouterData[] = [
+const systemRouter: RouterData[] = [
   {
     path: '/system',
     key: 'System',

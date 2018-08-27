@@ -2,9 +2,9 @@ import { History } from 'history';
 import { routerMiddleware, routerReducer } from 'react-router-redux';
 import { applyMiddleware, combineReducers, compose, createStore, ReducersMapObject, Store, StoreEnhancerStoreCreator } from 'redux';
 import thunk from 'redux-thunk';
-import { IApplicationState, reducers } from './Store';
+import { ApplicationState, reducers } from './Store';
 
-export default function configureStore(history: History, initialState: IApplicationState) {
+export default function configureStore(history: History, initialState: ApplicationState) {
 
   const createStoreWithMiddleware = compose(
     applyMiddleware(thunk, routerMiddleware(history)),
@@ -12,11 +12,11 @@ export default function configureStore(history: History, initialState: IApplicat
   )(createStore);
 
   const allReducers = buildRootReducer(reducers);
-  const store = createStoreWithMiddleware(allReducers, initialState) as Store<IApplicationState>;
+  const store = createStoreWithMiddleware(allReducers, initialState) as Store<ApplicationState>;
 
   return store;
 }
 
-function buildRootReducer(allReducers: ReducersMapObject<IApplicationState>) {
-  return combineReducers<IApplicationState>(Object.assign({}, allReducers, { routing: routerReducer }));
+function buildRootReducer(allReducers: ReducersMapObject<ApplicationState>) {
+  return combineReducers<ApplicationState>(Object.assign({}, allReducers, { routing: routerReducer }));
 }

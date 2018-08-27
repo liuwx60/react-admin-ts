@@ -7,12 +7,12 @@ import configureStore from './configureStore';
 import './index.css';
 import registerServiceWorker from './registerServiceWorker';
 import { routes } from './Routes';
-import { IApplicationState }  from './Store';
+import { ApplicationState }  from './Store';
 
 const baseUrl = document.getElementsByTagName('base')[0].getAttribute('href')!;
 const history = createBrowserHistory({ basename: baseUrl });
 
-const initialState = (window as any).initialReduxState as IApplicationState;
+const initialState = (window as any).initialReduxState as ApplicationState;
 const store = configureStore(history, initialState);
 
 ReactDOM.render(

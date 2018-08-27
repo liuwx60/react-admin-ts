@@ -1,6 +1,6 @@
-import IRouterData from '../IRouterData';
+import RouterData from '../RouterData';
 
-const roleRouter: IRouterData[] = [
+const roleRouter: RouterData[] = [
   {
     path: '/system/role/list',
     key: 'System.Role.List',

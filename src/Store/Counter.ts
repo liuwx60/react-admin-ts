@@ -1,6 +1,6 @@
 import { Reducer } from 'redux';
 
-export interface ICounterState {
+export interface CounterState {
   count: number;
 }
 
@@ -15,7 +15,7 @@ export const actionCreators = {
   decrement: ():IDecrementCountAction => ({ type: 'DECREMENT_COUNT' })
 };
 
-export const reducer: Reducer<ICounterState, KnownAction> = (state: ICounterState, action: KnownAction) => {
+export const reducer: Reducer<CounterState, KnownAction> = (state: CounterState, action: KnownAction) => {
   switch (action.type) {
     case 'INCREMENT_COUNT':
       return { count: state.count + 1 };

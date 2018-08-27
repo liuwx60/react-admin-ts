@@ -2,14 +2,25 @@ import * as React from 'react';
 import { Menu, Icon } from 'antd';
 import { Link } from 'react-router-dom';
 import routerData from '../../Routes/Router';
-import IRouterData from '../../Routes/IRouterData';
+import RouterData from '../../Routes/RouterData';
 const SubMenu = Menu.SubMenu;
 
 export default class SiderMenu extends React.Component {
+  private menus: JSX.Element[] = [];
+
   public componentDidMount() {
-    console.log('componentDidMount');
+    this.menus = this.getMenu();
   }
-  public getSubMenu = (router: IRouterData): JSX.Element => {
+
+  public render() {
+    return (
+      <Menu mode="inline" defaultSelectedKeys={['1']}>
+        {this.menus}
+      </Menu>
+    );
+  }
+
+  private getSubMenu = (router: RouterData): JSX.Element => {
     return (
       <SubMenu key={router.key} title={
         <span>
@@ -34,7 +45,8 @@ export default class SiderMenu extends React.Component {
     );
   }
 
-  public getMenu = () => {
+  private getMenu = () => {
+    console.log('menus');
     let menus: JSX.Element[] = [];
     routerData.map(item => {
       if (item.children.length === 0) {
@@ -49,13 +61,5 @@ export default class SiderMenu extends React.Component {
     });
 
     return menus;
-  }
-
-  public render() {
-    return (
-      <Menu mode="inline" defaultSelectedKeys={['1']}>
-        {this.getMenu().map(item => item)}
-      </Menu>
-    );
   }
 }

@@ -3,7 +3,7 @@ import * as React from 'react';
 import * as Loadable from 'react-loadable';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import routerData from '../Routes/Router';
-import IRouterData from '../Routes/IRouterData';
+import RouterData from '../Routes/RouterData';
 import './BaseLayout.css';
 import logo from '../logo.svg';
 import antdlogo from '../Assets/svg/logo.svg';
@@ -47,7 +47,7 @@ const getComponent = (component: Promise<any>) => {
 };
 
 const getRouterData = () => {
-  let routers: IRouterData[] = [];
+  let routers: RouterData[] = [];
   routerData.map(item => {
     if (item.children.length === 0) {
       routers.push(item);

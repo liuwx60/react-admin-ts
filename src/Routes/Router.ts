@@ -1,8 +1,8 @@
-import IRouterData from './IRouterData';
+import RouterData from './RouterData';
 import systemRouter from './System';
 import settingRouter from './Setting';
 
-const routerData: IRouterData[] = [
+const routerData: RouterData[] = [
   {
     path: '/dashboard',
     key: 'Dashboard',
