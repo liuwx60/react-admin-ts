@@ -9,18 +9,7 @@ const adminRouter: RouterData[] = [
     isMenu: true,
     component: import('../../Views/System/Admin/List'),
     exact: false,
-    children: [
-      {
-        path: '/system/admin/add',
-        key: 'System.Admin.Add',
-        name: '添加管理员',
-        icon: 'user',
-        isMenu: true,
-        component: import('../../Views/System/Admin/List'),
-        exact: false,
-        children: []
-      }
-    ]
+    children: []
   }
 ];
 

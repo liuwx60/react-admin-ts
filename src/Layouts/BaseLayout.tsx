@@ -1,74 +1,20 @@
-import { Icon, Layout, Menu, Badge, Avatar, Dropdown } from 'antd';
+import { Avatar, Badge, Dropdown, Icon, Layout, Menu } from 'antd';
 import * as React from 'react';
-import * as Loadable from 'react-loadable';
-import { Redirect, Route, Switch } from 'react-router-dom';
-import routerData from '../Routes/Router';
-import RouterData from '../Routes/RouterData';
-import './BaseLayout.css';
-import logo from '../logo.svg';
+import { Redirect, RouteComponentProps, Switch } from 'react-router-dom';
 import antdlogo from '../Assets/svg/logo.svg';
-import SiderMenu from '../Components/Menus/SiderMenu';
 import Breadcrumb from '../Components/Breadcrumbs/Breadcrumb';
-import { RouteComponentProps } from 'react-router-dom';
+import SiderMenu from '../Components/Menus/SiderMenu';
+import logo from '../logo.svg';
+import './BaseLayout.css';
+import { routeData } from '../Utils/Router';
 
 const { Header, Sider, Content } = Layout;
 
-interface IBaseLayoutState {
+interface BaseLayoutState {
   collapsed: boolean
 }
 
-interface IPrivateRouteParams {
-  component: any;
-  path: string;
-}
-
-const PrivateRoute = ({ component: Component, ...rest }: IPrivateRouteParams) => (
-  <Route
-    {...rest}
-    render={props =>
-      localStorage.getItem("access_token") ? (
-        <Component {...props}/>
-      ) : (
-        <Redirect
-          to={{
-            pathname: '/account/login',
-            state: { from: props.location }
-          }}
-        />
-      )}
-  />
-);
-
-const getComponent = (component: Promise<any>) => {
-  return Loadable({
-    loader: () => component,
-    loading: () => null
-  });
-};
-
-const getRouterData = () => {
-  let routers: RouterData[] = [];
-  routerData.map(item => {
-    if (item.children.length === 0) {
-      routers.push(item);
-      return;
-    }
-    let router = item;
-    while (router.children.length > 0) {
-      router.children.map(x => {
-        if (x.children.length === 0) {
-          routers.push(x);
-        }
-        router = x;
-      });
-    }
-  });
-  return routers;
-};
-
-const aa = getRouterData();
-
-export default class BaseLayout extends React.Component<RouteComponentProps<{}>, IBaseLayoutState> {
+export default class BaseLayout extends React.Component<RouteComponentProps<{}>, BaseLayoutState> {
 
   public state = {
     collapsed: false
@@ -143,9 +89,7 @@ export default class BaseLayout extends React.Component<RouteComponentProps<{}>,
 
             <div style={{ backgroundColor: '#fff', flex: 1, marginTop: '12px' }}>
               <Switch>
-                {aa.map(item => (
-                  <PrivateRoute path={item.path} key={item.key} component={getComponent(item.component)}/>
-                ))}
+                {routeData}
                 <Redirect path="*" to="/dashboard" />
               </Switch>
             </div>

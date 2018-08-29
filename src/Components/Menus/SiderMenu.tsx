@@ -46,7 +46,6 @@ export default class SiderMenu extends React.Component {
   }
 
   private getMenu = () => {
-    console.log('menus');
     let menus: JSX.Element[] = [];
     routerData.map(item => {
       if (item.children.length === 0) {

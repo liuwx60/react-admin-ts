@@ -15,7 +15,6 @@ class Login extends React.Component<LoginProps, {}> {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        // console.log(values);
         localStorage.setItem("access_token", "123");
         this.props.history.push('/dashboard/analysis2');
       }
