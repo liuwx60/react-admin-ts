@@ -4,7 +4,7 @@ const settingRouter: RouterData[] = [
   {
     path: '/setting',
     key: 'Setting',
-    name: '系统设置',
+    name: '基础设置',
     icon: 'setting',
     isMenu: true,
     component: null,
@@ -14,7 +14,7 @@ const settingRouter: RouterData[] = [
         path: '/setting/change-password',
         key: 'Change-Password',
         name: '修改密码',
-        icon: 'setting',
+        icon: 'edit',
         isMenu: true,
         component: import('../../Views/System/Admin/List'),
         exact: false,

@@ -14,7 +14,7 @@ export default class SiderMenu extends React.Component {
 
   public render() {
     return (
-      <Menu mode="inline" defaultSelectedKeys={['1']}>
+      <Menu mode="inline" defaultSelectedKeys={['1']} style={{ border: 0 }}>
         {this.menus}
       </Menu>
     );

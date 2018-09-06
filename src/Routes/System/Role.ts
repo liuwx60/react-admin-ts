@@ -5,7 +5,7 @@ const roleRouter: RouterData[] = [
     path: '/system/role/list',
     key: 'System.Role.List',
     name: '角色',
-    icon: 'user',
+    icon: 'usergroup-delete',
     isMenu: true,
     component: import('../../Views/System/Role/List'),
     exact: false,

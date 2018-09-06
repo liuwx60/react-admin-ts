@@ -7,7 +7,7 @@ const systemRouter: RouterData[] = [
     path: '/system',
     key: 'System',
     name: '系统管理',
-    icon: 'setting',
+    icon: 'tool',
     isMenu: true,
     component: null,
     exact: false,

@@ -5,7 +5,7 @@ import antdlogo from '../Assets/svg/logo.svg';
 import Breadcrumb from '../Components/Breadcrumbs/Breadcrumb';
 import SiderMenu from '../Components/Menus/SiderMenu';
 import logo from '../logo.svg';
-import './BaseLayout.css';
+import './BaseLayout.scss';
 import { routeData } from '../Utils/Router';
 
 const { Header, Sider, Content } = Layout;
@@ -49,6 +49,7 @@ export default class BaseLayout extends React.Component<RouteComponentProps<{}>,
           collapsible={true}
           collapsed={this.state.collapsed}
           style={{ height: '100vh' }}
+          className="wx-antd-layout-sider"
         >
           <div className="sider-logo">
             <img src={antdlogo} />
@@ -57,7 +58,7 @@ export default class BaseLayout extends React.Component<RouteComponentProps<{}>,
           <SiderMenu />
         </Sider>
         <Layout style={{ height: '100vh' }}>
-          <Header style={{ background: '#fff', padding: 0 }}>
+          <Header style={{ background: '#fff', padding: 0, zIndex: 99 }}>
             <div className="header-container">
               <div>
                 <Icon
