@@ -1,10 +1,10 @@
-import { createBrowserHistory } from 'history';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
+import { createBrowserHistory } from 'history';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux';
 import configureStore from './configureStore';
-import './index.css';
+import './index.scss';
 import registerServiceWorker from './registerServiceWorker';
 import { routes } from './Routes';
 import { ApplicationState }  from './Store';
@@ -22,3 +22,4 @@ ReactDOM.render(
   document.getElementById('root') as HTMLElement
 );
 registerServiceWorker();
+
