@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Form, Icon, Input, Button } from 'antd';
-import './Login.css';
+import './Login.scss';
 import { RouteComponentProps } from 'react-router-dom';
 import { FormComponentProps } from 'antd/lib/form/Form';
 
