@@ -34,12 +34,18 @@ export const actionCreators = {
 
 const unloadedState: AdminState = { list: [] };
 
-export const reducer: Reducer<AdminState, KnownAction> = (state: AdminState, action: KnownAction) => {
-  switch (action.type) {
-    case 'FETCH_ADMIN_LIST':
-      return { list: action.adminList };
-    default:
-  }
+export const reducer: Reducer<AdminState, KnownAction> =
+  (state: AdminState, action: KnownAction) =>
+    action.type in mutations
+    ? mutations[action.type](state, action)
+    : (state || unloadedState);
 
-  return state || unloadedState;
+interface IMutations {
+  [index: string]: (state: AdminState, action: KnownAction) => AdminState;
+}
+
+const mutations: IMutations = {
+  ['FETCH_ADMIN_LIST'] (state: AdminState, action: KnownAction) {
+    return { ...state, list: action.adminList } as AdminState;
+  }
 };
