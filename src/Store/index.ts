@@ -4,8 +4,8 @@ import * as Admin from '../Modules/System/Admin/Store';
 
 export interface ApplicationState {
   counter: Counter.CounterState;
-  login: Login.LoginState,
-  admin: Admin.AdminState
+  login: Login.LoginState;
+  admin: Admin.AdminState;
 }
 
 export const reducers = {
@@ -14,7 +14,4 @@ export const reducers = {
   admin: Admin.reducer
 };
 
-export interface AppThunkAction<TAction> {
-  // tslint:disable-next-line:callable-types
-  (dispatch: (action: TAction) => void, getState: () => ApplicationState): void;
-}
+export type AppThunkAction<TAction> = (dispatch: (action: TAction) => void, getState: () => ApplicationState) => void;
