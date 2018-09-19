@@ -16,7 +16,7 @@ const settingRouter: RouterData[] = [
         name: '修改密码',
         icon: 'edit',
         isMenu: true,
-        component: import('../../Views/System/Admin/List'),
+        component: import('../../Modules/System/Admin/List'),
         exact: false,
         children: []
       }

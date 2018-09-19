@@ -9,7 +9,7 @@ const routerData: RouterData[] = [
     name: 'Dashboard',
     icon: 'dashboard',
     isMenu: true,
-    component: import('../Views/Dashboard/Analysis'),
+    component: import('../Modules/Dashboard/Analysis'),
     exact: false,
     children: []
   },

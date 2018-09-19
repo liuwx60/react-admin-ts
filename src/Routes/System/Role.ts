@@ -7,7 +7,7 @@ const roleRouter: RouterData[] = [
     name: '角色',
     icon: 'usergroup-delete',
     isMenu: true,
-    component: import('../../Views/System/Role/List'),
+    component: import('../../Modules/System/Role/List'),
     exact: false,
     children: []
   }
