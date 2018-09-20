@@ -20,13 +20,30 @@ class List extends React.Component<AdminProps, {}> {
       {
         title: '用户名',
         dataIndex: 'username'
+      },
+      {
+        title: '昵称',
+        dataIndex: 'nickName'
+      },
+      {
+        title: '邮箱',
+        dataIndex: 'email'
+      },
+      {
+        title: '登录时间',
+        dataIndex: 'lastLoginTime'
       }
     ];
 
     return (
       <React.Fragment>
         <div>
-          <Table columns={columns} dataSource={this.props.list} rowKey={record => record.id.toString()} />
+          <Table
+            columns={columns}
+            dataSource={this.props.list}
+            rowKey={record => record.id.toString()}
+            loading={this.props.isFetching}
+          />
         </div>
       </React.Fragment>
     );
