@@ -5,6 +5,7 @@ import * as AdminStore from './Store';
 import { ApplicationState } from '../../../Store';
 import { RouteComponentProps } from 'react-router-dom';
 import { connect } from 'react-redux';
+import moment from 'moment';
 
 type AdminProps =
   AdminStore.AdminState
@@ -31,7 +32,8 @@ class List extends React.Component<AdminProps, {}> {
       },
       {
         title: '登录时间',
-        dataIndex: 'lastLoginTime'
+        dataIndex: 'lastLoginTime',
+        render: val => <span>{moment(val).format('YYYY-MM-DD HH:mm:ss')}</span>
       }
     ];
 
