@@ -1,12 +1,12 @@
 import { Avatar, Badge, Dropdown, Icon, Layout, Menu } from 'antd';
 import * as React from 'react';
 import { Redirect, RouteComponentProps, Switch } from 'react-router-dom';
-import antdlogo from '../Assets/svg/logo.svg';
-import Breadcrumb from '../Components/Breadcrumbs/Breadcrumb';
-import SiderMenu from '../Components/Menus/SiderMenu';
-import logo from '../logo.svg';
+import antdlogo from '../../Assets/svg/logo.svg';
+import Breadcrumb from '../Breadcrumbs/Breadcrumb';
+import SiderMenu from '../Menus/SiderMenu';
+import logo from '../../logo.svg';
 import './BaseLayout.scss';
-import { routeData } from '../Utils/Router';
+import { routeData } from '../../Utils/Router';
 
 const { Header, Sider, Content } = Layout;
 
