@@ -7,7 +7,7 @@ import { FormComponentProps } from 'antd/lib/form/Form';
 const FormItem = Form.Item;
 
 type LoginProps =
-FormComponentProps
+  FormComponentProps
   & RouteComponentProps<{}>;
 
 class Login extends React.Component<LoginProps, {}> {

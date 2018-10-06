@@ -33,7 +33,7 @@ interface FetchingAdminListAction {
 type KnownAction = FetchAdminListAction | FetchingAdminListAction;
 
 export const actionCreators = {
-  fetchAdminList: ():AppThunkAction<KnownAction> => async (dispatch, getState) => {
+  fetchAdminList: (): AppThunkAction<KnownAction> => async (dispatch, getState) => {
     if (getState().admin.list.length) {
       return;
     }
@@ -44,6 +44,9 @@ export const actionCreators = {
       .then(response => response.data as Paged<AdminList[]>)
       .then(data => {
         dispatch({ type: 'FETCH_ADMIN_LIST', adminList: data.rows });
+      })
+      .catch(() => {
+        dispatch({ type: 'FETCH_ADMIN_LIST', adminList: [] });
       });
   }
 };
