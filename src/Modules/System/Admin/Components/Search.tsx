@@ -24,7 +24,7 @@ class Search extends React.Component<AdminProps, {}> {
           <Col span={8}>
             <span className="search-col">
               <Button type="primary" htmlType="submit">搜索</Button>
-              <Button style={{ marginLeft: 8 }}>重置</Button>
+              <Button style={{ marginLeft: 8 }} onClick={this.handleReset}>重置</Button>
             </span>
           </Col>
         </Row>
@@ -34,6 +34,15 @@ class Search extends React.Component<AdminProps, {}> {
 
   private handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
+    this.handleSearch();
+  }
+
+  private handleReset = () => {
+    this.props.form.resetFields();
+    this.handleSearch();
+  }
+
+  private handleSearch() {
     let searchdata = this.props.form.getFieldsValue() as SearchData;
     this.props.assignSearchData(searchdata);
   }
