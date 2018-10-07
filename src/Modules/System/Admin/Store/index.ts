@@ -1,6 +1,6 @@
 import { Reducer } from "redux";
 import { AdminList, AdminState, initState } from "./State";
-import { KnownAction, FetchAdminListAction, actionCreators, ChangePagedAction } from "./Action";
+import { KnownAction, FetchAdminListAction, actionCreators, ChangePagedAction, AssignSearchDataAction } from "./Action";
 
 export { AdminState, AdminList, actionCreators };
 
@@ -35,6 +35,16 @@ const mutations: IMutations = {
         ...state.searchData,
         page: action.page,
         pageSize: action.pageSize
+      }
+    };
+  },
+  ['ASSIGN_SEARCH_DATA'] (state: AdminState, action: AssignSearchDataAction) {
+    return {
+      ...state,
+      searchData: {
+        ...action.searchData,
+        page: 1,
+        pageSize: state.searchData.pageSize
       }
     };
   }

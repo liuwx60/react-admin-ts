@@ -34,7 +34,8 @@ class Search extends React.Component<AdminProps, {}> {
 
   private handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    console.log(this.props.form.getFieldsValue() as SearchData);
+    let searchdata = this.props.form.getFieldsValue() as SearchData;
+    this.props.assignSearchData(searchdata);
   }
 }
 
