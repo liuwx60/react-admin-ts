@@ -2,13 +2,14 @@ import * as React from "react";
 import { Form, Row, Col, Input, Button } from "antd";
 import FormItem from "antd/lib/form/FormItem";
 import AdminProps from "../Props";
+import { SearchData } from "../Store/State";
 
 class Search extends React.Component<AdminProps, {}> {
   public render() {
     const { getFieldDecorator } = this.props.form;
 
     return (
-      <Form>
+      <Form onSubmit={this.handleSubmit}>
         <Row gutter={24}>
           <Col span={8}>
             <FormItem label="用户名">
@@ -29,6 +30,11 @@ class Search extends React.Component<AdminProps, {}> {
         </Row>
       </Form>
     );
+  }
+
+  private handleSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+    console.log(this.props.form.getFieldsValue() as SearchData);
   }
 }
 

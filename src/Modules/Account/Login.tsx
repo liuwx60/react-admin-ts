@@ -11,7 +11,7 @@ type LoginProps =
   & RouteComponentProps<{}>;
 
 class Login extends React.Component<LoginProps, {}> {
-  public handleSubmit = (e: any) => {
+  public handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {

@@ -21,9 +21,16 @@ class List extends React.Component<AdminProps, {}> {
         <div>
           <Table
             columns={columns}
-            dataSource={this.props.list}
+            dataSource={this.props.listData.rows}
             rowKey={record => record.id.toString()}
             loading={this.props.isFetching}
+            bordered={true}
+            pagination={{
+              onChange: this.props.changePage,
+              total: this.props.listData.total,
+              pageSize: this.props.searchData.pageSize,
+              current: this.props.searchData.page
+            }}
           />
         </div>
       </div>

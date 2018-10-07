@@ -5,30 +5,36 @@ import { Paged } from "src/Utils/Paged";
 
 export interface FetchAdminListAction {
   type: 'FETCH_ADMIN_LIST';
-  adminList: AdminList[];
+  listData: Paged<AdminList[]>;
 }
 
 export interface FetchingAdminListAction {
   type: 'FETCHING_ADMIN_LIST';
 }
 
-export type KnownAction = FetchAdminListAction | FetchingAdminListAction;
+export interface ChangePagedAction {
+  type: 'CHANGE_PAGED';
+  page: number;
+  pageSize: number;
+}
+
+export type KnownAction = FetchAdminListAction | FetchingAdminListAction | ChangePagedAction;
 
 export const actionCreators = {
-  fetchAdminList: (): AppThunkAction<KnownAction> => async (dispatch, getState) => {
-    if (getState().admin.list.length) {
-      return;
-    }
-
+  fetchAdminList: (): AppThunkAction<KnownAction> => (dispatch, getState) => {
     dispatch({ type: 'FETCHING_ADMIN_LIST' });
 
-    await axios.post('admin/list')
+    axios.post('admin/list', getState().admin.searchData)
       .then(response => response.data as Paged<AdminList[]>)
       .then(data => {
-        dispatch({ type: 'FETCH_ADMIN_LIST', adminList: data.rows });
+        dispatch({ type: 'FETCH_ADMIN_LIST', listData: data });
       })
       .catch(() => {
-        dispatch({ type: 'FETCH_ADMIN_LIST', adminList: [] });
+        dispatch({ type: 'FETCH_ADMIN_LIST', listData: { rows: [], total: 0 } });
       });
+  },
+  changePage: (page: number, pageSize: number): AppThunkAction<KnownAction> => (dispatch, getState)  => {
+    dispatch({ type: 'CHANGE_PAGED', page, pageSize });
+    actionCreators.fetchAdminList()(dispatch, getState);
   }
 };

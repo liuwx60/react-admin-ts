@@ -1,3 +1,6 @@
+import { BaseSearch } from "src/Utils/BaseSearch";
+import { Paged } from "src/Utils/Paged";
+
 export interface AdminList {
   id: number;
   username: string;
@@ -6,24 +9,26 @@ export interface AdminList {
   lastLoginTime: Date;
 }
 
-export interface RequestData {
+export interface SearchData extends BaseSearch {
   username: string | null;
   nickName: string | null;
 }
 
 export interface AdminState {
-  list: AdminList[];
+  listData: Paged<AdminList[]>;
   isFetching: boolean;
-  requestData: RequestData;
+  searchData: SearchData;
 }
 
-export const initRequestData: RequestData = {
+export const initSearchData: SearchData = {
   username: null,
-  nickName: null
+  nickName: null,
+  page: 1,
+  pageSize: 20
 };
 
 export const initState: AdminState = {
-  list: [],
+  listData: { rows: [], total: 0 },
   isFetching: false,
-  requestData: initRequestData
+  searchData: initSearchData
 };

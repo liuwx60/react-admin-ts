@@ -1,6 +1,6 @@
 import { Reducer } from "redux";
 import { AdminList, AdminState, initState } from "./State";
-import { KnownAction, FetchAdminListAction, actionCreators } from "./Action";
+import { KnownAction, FetchAdminListAction, actionCreators, ChangePagedAction } from "./Action";
 
 export { AdminState, AdminList, actionCreators };
 
@@ -15,10 +15,10 @@ type IMutations = {
 };
 
 const mutations: IMutations = {
-  ['FETCH_ADMIN_LIST'] (state: AdminState, action: KnownAction) {
+  ['FETCH_ADMIN_LIST'] (state: AdminState, action: FetchAdminListAction) {
     return {
       ...state,
-      list: (action as FetchAdminListAction).adminList,
+      listData: action.listData,
       isFetching: false
     } as AdminState;
   },
@@ -27,5 +27,15 @@ const mutations: IMutations = {
       ...state,
       isFetching: true
     } as AdminState;
+  },
+  ['CHANGE_PAGED'] (state: AdminState, action: ChangePagedAction) {
+    return {
+      ...state,
+      searchData: {
+        ...state.searchData,
+        page: action.page,
+        pageSize: action.pageSize
+      }
+    };
   }
 };
