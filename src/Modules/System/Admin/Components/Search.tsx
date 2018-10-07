@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Form, Row, Col, Input, Button } from "antd";
 import FormItem from "antd/lib/form/FormItem";
-import AdminProps from "../AdminProps";
+import AdminProps from "../Props";
 
 class Search extends React.Component<AdminProps, {}> {
   public render() {

@@ -4,9 +4,9 @@ import * as AdminStore from './Store';
 import { ApplicationState } from '../../../Store';
 import { connect } from 'react-redux';
 import columns from './Components/Column';
-import AdminProps from './AdminProps';
+import AdminProps from './Props';
 import Search from './Components/Search';
-import './style.scss';
+import './Admin.scss';
 
 class List extends React.Component<AdminProps, {}> {
   public componentWillMount() {
