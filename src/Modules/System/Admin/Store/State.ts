@@ -14,10 +14,18 @@ export interface SearchData extends BaseSearch {
   nickName: string | null;
 }
 
+export interface AdminDetail {
+  id: number;
+  username: string;
+  nickName: string;
+  email: string;
+}
+
 export interface AdminState {
   listData: Paged<AdminList[]>;
   isFetching: boolean;
   searchData: SearchData;
+  adminDetail: AdminDetail;
 }
 
 export const initSearchData: SearchData = {
@@ -30,5 +38,6 @@ export const initSearchData: SearchData = {
 export const initState: AdminState = {
   listData: { rows: [], total: 0 },
   isFetching: false,
-  searchData: initSearchData
+  searchData: initSearchData,
+  adminDetail: {} as AdminDetail
 };
