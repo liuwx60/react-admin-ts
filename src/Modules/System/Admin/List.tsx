@@ -9,19 +9,20 @@ import Search from './Components/Search';
 import './Admin.scss';
 import FormModal from './Components/FormModal';
 
-interface AdminViewState {
-  visibleAdd: boolean;
-  visibleEdit: boolean;
-}
-
-class List extends React.Component<AdminProps, AdminViewState> {
+class List extends React.Component<AdminProps, {}> {
   public componentWillMount() {
-    this.setState({
-      visibleAdd: false,
-      visibleEdit: false
-    });
+    this.setState({ visible: false });
 
     this.props.fetchAdminList();
+
+    columns.push({
+      title: '操作',
+      render: (text, record) => (
+        <span>
+          <a href="javascript:;" onClick={() => this.handleEdit(record.id)}>编辑</a>
+        </span>
+      )
+    });
   }
   public render() {
     return (
@@ -30,13 +31,13 @@ class List extends React.Component<AdminProps, AdminViewState> {
           <Search {...this.props} />
         </div>
         <div className="table-button-container">
-          <Button type="primary" onClick={() => this.setState({ visibleAdd: true })}>添加</Button>
+          <Button type="primary" onClick={() => this.props.toggleVisible(true)}>添加</Button>
         </div>
         <div>
           <Table
             columns={columns}
             dataSource={this.props.listData.rows}
-            rowKey={record => record.id.toString()}
+            rowKey={record => record.id}
             loading={this.props.isFetching}
             bordered={true}
             pagination={{
@@ -49,16 +50,14 @@ class List extends React.Component<AdminProps, AdminViewState> {
         </div>
         <FormModal
           {...this.props}
-          formType="add"
-          onCloseForm={this.handleCloseAddForm}
-          visible={this.state.visibleAdd}
         />
       </div>
     );
   }
 
-  private handleCloseAddForm = () => {
-    this.setState({ visibleAdd: false });
+  private handleEdit = (id: string) => {
+    this.props.toggleVisible(true);
+    this.props.fetchAdminDetail(id);
   }
 }
 

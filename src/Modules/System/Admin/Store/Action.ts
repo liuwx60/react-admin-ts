@@ -1,7 +1,8 @@
-import { AdminList, SearchData } from "./State";
+import { AdminList, SearchData, AdminDetail } from "./State";
 import { AppThunkAction } from "src/Store";
 import axios from "src/Utils/Http";
 import { Paged } from "src/Utils/Paged";
+import { message } from "antd";
 
 export interface FetchAdminListAction {
   type: 'FETCH_ADMIN_LIST';
@@ -23,11 +24,23 @@ export interface AssignSearchDataAction {
   searchData: SearchData;
 }
 
+export interface FetchAdminDetailAcion {
+  type: 'FETCH_ADMIN_DETAIL';
+  detail: AdminDetail;
+}
+
+export interface ToggleVisibleAction {
+  type: 'TOGGLE_VISIBLE';
+  visible: boolean;
+}
+
 export type KnownAction =
   FetchAdminListAction
   | FetchingAdminListAction
   | ChangePagedAction
-  | AssignSearchDataAction;
+  | AssignSearchDataAction
+  | FetchAdminDetailAcion
+  | ToggleVisibleAction;
 
 export const actionCreators = {
   fetchAdminList: (): AppThunkAction<KnownAction> => (dispatch, getState) => {
@@ -49,5 +62,24 @@ export const actionCreators = {
   assignSearchData: (searchData: SearchData): AppThunkAction<KnownAction> => (dispatch, getState) => {
     dispatch({ type: 'ASSIGN_SEARCH_DATA', searchData });
     actionCreators.fetchAdminList()(dispatch, getState);
-  }
+  },
+  fetchAdminDetail: (id: string): AppThunkAction<KnownAction> => (dispatch, getState) => {
+    axios.post('admin/detail', { id })
+      .then(response => response.data as AdminDetail)
+      .then(data => {
+        dispatch({ type: 'FETCH_ADMIN_DETAIL', detail: data });
+      });
+  },
+  addOrEditAdmin: (record: AdminDetail): AppThunkAction<KnownAction> => async (dispatch, getState) => {
+    record = {...getState().admin.adminDetail, ...record};
+
+    await axios.post(`admin/${record.id ? 'edit' : 'add'}`, record)
+      .then(() => {
+        dispatch({ type: 'TOGGLE_VISIBLE', visible: false });
+        dispatch({ type: 'FETCH_ADMIN_DETAIL', detail: {} as AdminDetail });
+
+        message.success('保存成功');
+      });
+  },
+  toggleVisible: (visible: boolean): ToggleVisibleAction => ({ type: 'TOGGLE_VISIBLE', visible })
 };

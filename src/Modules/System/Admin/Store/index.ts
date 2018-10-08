@@ -1,6 +1,14 @@
 import { Reducer } from "redux";
 import { AdminList, AdminState, initState } from "./State";
-import { KnownAction, FetchAdminListAction, actionCreators, ChangePagedAction, AssignSearchDataAction } from "./Action";
+import {
+  KnownAction,
+  FetchAdminListAction,
+  actionCreators,
+  ChangePagedAction,
+  AssignSearchDataAction,
+  FetchAdminDetailAcion,
+  ToggleVisibleAction
+} from "./Action";
 
 export { AdminState, AdminList, actionCreators };
 
@@ -46,6 +54,18 @@ const mutations: IMutations = {
         page: 1,
         pageSize: state.searchData.pageSize
       }
+    };
+  },
+  ['FETCH_ADMIN_DETAIL'] (state: AdminState, action: FetchAdminDetailAcion) {
+    return {
+      ...state,
+      adminDetail: action.detail
+    };
+  },
+  ['TOGGLE_VISIBLE'] (state: AdminState, action: ToggleVisibleAction) {
+    return {
+      ...state,
+      visible: action.visible
     };
   }
 };

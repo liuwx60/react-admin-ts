@@ -2,7 +2,7 @@ import { BaseSearch } from "src/Utils/BaseSearch";
 import { Paged } from "src/Utils/Paged";
 
 export interface AdminList {
-  id: number;
+  id: string;
   username: string;
   nickName: string;
   email: string;
@@ -26,6 +26,8 @@ export interface AdminState {
   isFetching: boolean;
   searchData: SearchData;
   adminDetail: AdminDetail;
+  saving: boolean;
+  visible: boolean;
 }
 
 export const initSearchData: SearchData = {
@@ -39,5 +41,7 @@ export const initState: AdminState = {
   listData: { rows: [], total: 0 },
   isFetching: false,
   searchData: initSearchData,
-  adminDetail: {} as AdminDetail
+  adminDetail: {} as AdminDetail,
+  saving: false,
+  visible: false
 };
