@@ -13,7 +13,7 @@ type LoginProps =
 class Login extends React.Component<LoginProps, {}> {
   public handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    this.props.form.validateFields((err, values) => {
+    this.props.form.validateFields((err: any, values: any) => {
       if (!err) {
         localStorage.setItem("access_token", "123");
         this.props.history.push('/dashboard/analysis2');
