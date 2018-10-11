@@ -11,19 +11,9 @@ import FormModal from './Components/FormModal';
 
 class List extends React.Component<AdminProps, {}> {
   public componentWillMount() {
-    this.setState({ visible: false });
-
     this.props.fetchAdminList();
-
-    columns.push({
-      title: '操作',
-      render: (text, record) => (
-        <span>
-          <a href="javascript:;" onClick={() => this.handleEdit(record.id)}>编辑</a>
-        </span>
-      )
-    });
   }
+
   public render() {
     return (
       <div className="global-list">
@@ -35,7 +25,17 @@ class List extends React.Component<AdminProps, {}> {
         </div>
         <div>
           <Table
-            columns={columns}
+            columns={[
+              ...columns,
+              {
+                title: '操作',
+                render: record => (
+                  <span>
+                    <a href="javascript:;" onClick={() => this.handleEdit(record.id)}>编辑</a>
+                  </span>
+                )
+              }
+            ]}
             dataSource={this.props.listData.rows}
             rowKey={record => record.id}
             loading={this.props.isFetching}
@@ -48,9 +48,7 @@ class List extends React.Component<AdminProps, {}> {
             }}
           />
         </div>
-        <FormModal
-          {...this.props}
-        />
+        <FormModal {...this.props} />
       </div>
     );
   }
