@@ -76,7 +76,6 @@ export const actionCreators = {
     await axios.post(`admin/${record.id ? 'edit' : 'add'}`, record)
       .then(() => {
         dispatch({ type: 'TOGGLE_VISIBLE', visible: false });
-        dispatch({ type: 'FETCH_ADMIN_DETAIL', detail: {} as AdminDetail });
 
         message.success('保存成功');
       });

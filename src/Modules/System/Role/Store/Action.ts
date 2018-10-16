@@ -57,7 +57,6 @@ export const actionCreators = {
     await axios.post(`role/${record.id ? 'edit' : 'add'}`, record)
       .then(() => {
         dispatch({ type: 'TOGGLE_VISIBLE', visible: false });
-        dispatch({ type: 'FETCH_ROLE_DETAIL', detail: {} as RoleDetail });
 
         message.success('保存成功');
       });

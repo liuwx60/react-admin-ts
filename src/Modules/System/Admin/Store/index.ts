@@ -1,5 +1,5 @@
 import { Reducer } from "redux";
-import { AdminList, AdminState, initState } from "./State";
+import { AdminList, AdminState, initState, AdminDetail } from "./State";
 import {
   KnownAction,
   FetchAdminListAction,
@@ -65,6 +65,7 @@ const mutations: IMutations = {
   ['TOGGLE_VISIBLE'] (state: AdminState, action: ToggleVisibleAction) {
     return {
       ...state,
+      adminDetail: {} as AdminDetail,
       visible: action.visible
     };
   }

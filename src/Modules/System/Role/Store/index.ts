@@ -1,4 +1,4 @@
-import { RoleState, initRoleState } from "./State";
+import { RoleState, initRoleState, RoleDetail } from "./State";
 import { actionCreators, KnownAction, FetchRoleListAction, ChangePagedAction, FetchRoleDetailAction, ToggleVisibleAction } from "./Action";
 import { Reducer } from "redux";
 
@@ -40,6 +40,7 @@ const mutations: IMutations = {
   ['TOGGLE_VISIBLE'] (state: RoleState, action: ToggleVisibleAction) {
     return {
       ...state,
+      roleDetail: {} as RoleDetail,
       visible: action.visible
     };
   }
